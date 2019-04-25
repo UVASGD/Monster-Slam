@@ -361,6 +361,7 @@ MonoBehaviour:
   armor: 0
   move_speed: 0
   monster_name: Dummy
+  targ: {fileID: 0}
 --- !u!23 &3646107318801079000
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -438,6 +439,7 @@ GameObject:
   - component: {fileID: 3646107318801079001}
   - component: {fileID: 3646107318801079006}
   - component: {fileID: 3646107318801079007}
+  - component: {fileID: 3646107318801079008}
   m_Layer: 0
   m_Name: Nameplate
   m_TagString: Untagged
@@ -568,6 +570,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &3646107318801079008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3646107318801079005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e65f57b77652e2468af12e9ee213b97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3809052449299526523
 PrefabInstance:
   m_ObjectHideFlags: 0

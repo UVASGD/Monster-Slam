@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Monster1 : MonsterBody
 {
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -13,7 +14,6 @@ public class Monster1 : MonsterBody
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision)

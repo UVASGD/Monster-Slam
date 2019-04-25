@@ -10,20 +10,23 @@ public delegate void DeathDel(MonsterBody body);
 public class MonsterBody : MonoBehaviour
 {
     public float health, armor, move_speed;
-    float dash_speed = 20f, 
-        turn_speed = 20f, 
+    float dash_speed = 20f,
+        turn_speed = 20f,
+        turn_threshold = 5f,
         dash_time = 3f, 
         stun_time = 3f, 
         stun_threshold = 30f, 
-        knockback = 25f;
+        knockback = 25f,
+        max_rotate = 50f,
+        max_velocity = 50f;
     bool dashing = false, stunned = false;
 
     [HideInInspector] public string monster_name = "Dummy";
 
-    Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
-    GameObject target;
-    List<GameObject> detected_monsters = new List<GameObject>();
+    protected GameObject target;
+    protected List<GameObject> detected_monsters = new List<GameObject>();
 
     public event DeathDel DeathEvent;
 
@@ -35,6 +38,13 @@ public class MonsterBody : MonoBehaviour
             GetComponentInChildren<Head>().DamageEvent += Damage;
         if (GetComponentInChildren<TextMeshPro>())
             monster_name = GetComponentInChildren<TextMeshPro>().text;
+    }
+
+    private void FixedUpdate()
+    {
+        rb.angularVelocity = Mathf.Min(rb.angularVelocity, max_rotate);
+        if (rb.velocity.magnitude > max_velocity)
+            rb.velocity = rb.velocity.normalized * max_velocity;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -66,6 +76,8 @@ public class MonsterBody : MonoBehaviour
 
     protected void Damage(float damage, Vector2 dir)
     {
+        if (dashing)
+            return;
         if (damage > stun_threshold)
             Stun();
 
@@ -93,7 +105,7 @@ public class MonsterBody : MonoBehaviour
     {
         DeathEvent?.Invoke(this);
         FX_Spawner.instance.SpawnFX(FXType.Death, transform.position, Vector2.up);
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject);
     }
 
     protected void Move(Vector2 dir)
@@ -112,7 +124,8 @@ public class MonsterBody : MonoBehaviour
 
     protected void Turn(float dir)
     {
-        rb.AddTorque(dir * turn_speed);
+        if (Vector2.Angle(transform.up, (target.transform.position - transform.position).normalized) < turn_threshold)
+            rb.AddTorque(dir * turn_speed);
     }
 
     protected void TurnToTarget()

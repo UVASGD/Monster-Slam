@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 1030374538}
   - component: {fileID: 1030374537}
   - component: {fileID: 1030374536}
+  - component: {fileID: 1030374540}
   m_Layer: 0
   m_Name: Nameplate
   m_TagString: Untagged
@@ -552,6 +553,18 @@ MeshRenderer:
   m_SortingLayerID: 1784752597
   m_SortingLayer: 2
   m_SortingOrder: 2
+--- !u!114 &1030374540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030374534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e65f57b77652e2468af12e9ee213b97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1114419042
 GameObject:
   m_ObjectHideFlags: 0
