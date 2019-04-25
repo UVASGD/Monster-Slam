@@ -923,12 +923,6 @@ MonoBehaviour:
   health: 0
   armor: 0
   move_speed: 0
-  dash_speed: 0
-  turn_speed: 0
-  dash_time: 0
-  stun_time: 0
-  stun_threshold: 0
-  knockback: 0
 --- !u!23 &3646107318801079000
 MeshRenderer:
   m_ObjectHideFlags: 0

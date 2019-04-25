@@ -6,7 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class MonsterBody : MonoBehaviour
 {
-    public float health, armor, move_speed, dash_speed, turn_speed, dash_time, stun_time, stun_threshold, knockback;
+    public float health, armor, move_speed;
+    float dash_speed = 20f, 
+        turn_speed = 20f, 
+        dash_time = 3f, 
+        stun_time = 3f, 
+        stun_threshold = 30f, 
+        knockback = 25f;
     bool dashing = false, stunned = false;
 
     Rigidbody2D rb;
@@ -54,7 +60,7 @@ public class MonsterBody : MonoBehaviour
         if (damage > stun_threshold)
             Stun();
 
-        rb.AddForce(-dir * knockback);
+        rb.AddForce(-dir * knockback, ForceMode2D.Impulse);
         FX_Spawner.instance.SpawnFX(FXType.Hit, transform.position, dir);
 
         health -= damage;
