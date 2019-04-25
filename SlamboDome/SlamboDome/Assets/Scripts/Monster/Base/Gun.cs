@@ -6,7 +6,7 @@ public class Gun : MonoBehaviour
 {
     public GameObject bullet;
     public GameObject shot_fx;
-    public float shot_interval = 1f;
+    float shot_range_min = 2f, shot_range_max = 5f;
     bool firing = false;
 
     GameObject barrel;
@@ -23,6 +23,7 @@ public class Gun : MonoBehaviour
         if (!firing)
         {
             GameObject b = Instantiate(bullet, barrel.transform.position, Quaternion.identity);
+            b.transform.localScale = transform.localScale;
             b.transform.up = barrel.transform.up;
             StartCoroutine(Fire());
         }
@@ -31,7 +32,7 @@ public class Gun : MonoBehaviour
     IEnumerator Fire()
     {
         firing = true;
-        yield return new WaitForSeconds(shot_interval);
+        yield return new WaitForSeconds(Random.Range(shot_range_min, shot_range_max));
         firing = false;
     }
 }

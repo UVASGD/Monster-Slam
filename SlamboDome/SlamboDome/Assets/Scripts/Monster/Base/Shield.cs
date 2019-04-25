@@ -11,6 +11,15 @@ public class Shield : MonoBehaviour
 
     SpriteRenderer s;
 
+    private void Awake()
+    {
+        Collider2D this_collider = GetComponent<Collider2D>();
+        foreach (Collider2D coll in transform.parent.GetComponentsInChildren<Collider2D>())
+        {
+            Physics2D.IgnoreCollision(coll, this_collider, true);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

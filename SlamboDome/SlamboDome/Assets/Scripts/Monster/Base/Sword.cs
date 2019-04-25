@@ -13,10 +13,4 @@ public class Sword : MonoBehaviour
             Physics2D.IgnoreCollision(coll, this_collider, true);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
