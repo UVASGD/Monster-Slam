@@ -923,6 +923,7 @@ MonoBehaviour:
   health: 0
   armor: 0
   move_speed: 0
+  monster_name: Dummy
 --- !u!23 &3646107318801079000
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1196,6 +1197,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 157682433, guid: 53a2267aaa2c506478a271ea49455c09, type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 157682433, guid: 53a2267aaa2c506478a271ea49455c09, type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 18318640, guid: 53a2267aaa2c506478a271ea49455c09, type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 18318640, guid: 53a2267aaa2c506478a271ea49455c09, type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53a2267aaa2c506478a271ea49455c09, type: 3}

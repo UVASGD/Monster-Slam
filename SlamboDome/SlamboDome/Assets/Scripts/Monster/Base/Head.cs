@@ -21,7 +21,7 @@ public class Head : MonoBehaviour
 
         if (damage > damage_threshold)
         {
-            DamageEvent(damage * crit_multiplier, collision.contacts[0].normal);
+            DamageEvent?.Invoke(damage * crit_multiplier, collision.contacts[0].normal);
         }
     }
 
