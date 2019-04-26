@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     public void Win(MonsterBody mb)
     {
         rematch.gameObject.SetActive(true);
-        text.text = mb.monster_name + " wins!" + win_phrases[Random.Range(0, win_phrases.Count)];
+        text.text = mb.monster_name + " wins! " + win_phrases[Random.Range(0, win_phrases.Count)];
     }
 
     public void Draw()

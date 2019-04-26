@@ -11,13 +11,20 @@ public class Shield : MonoBehaviour
 
     SpriteRenderer s;
 
+    Vector2 offset;
     private void Awake()
     {
+        offset = transform.position - transform.parent.position;
         Collider2D this_collider = GetComponent<Collider2D>();
         foreach (Collider2D coll in transform.parent.GetComponentsInChildren<Collider2D>())
         {
             Physics2D.IgnoreCollision(coll, this_collider, true);
         }
+    }
+
+    private void LateUpdate()
+    {
+        transform.position = (Vector2)transform.parent.transform.position + offset;
     }
 
     // Start is called before the first frame update

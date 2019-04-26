@@ -40,6 +40,34 @@ public class MonsterBody : MonoBehaviour
             monster_name = GetComponentInChildren<TextMeshPro>().text;
     }
 
+    protected virtual void Update()
+    {
+        if (!stunned && !moving)
+        {
+            if (!target)
+            {
+                StartCoroutine(RandomMove());
+            }
+            MoveToTarget();
+        }
+    }
+
+    bool moving = false;
+    IEnumerator RandomMove()
+    {
+        float move_time = 1f;
+        Vector2 random_location = (Random.insideUnitCircle);
+        moving = true;
+        while (move_time > 0)
+        {
+            move_time -= Time.deltaTime;
+            Move(random_location);
+            Turn(Random.Range(-1, 1));
+            yield return null;
+        }
+        moving = false;
+    }
+
     private void FixedUpdate()
     {
         rb.angularVelocity = Mathf.Min(rb.angularVelocity, max_rotate);
@@ -66,12 +94,19 @@ public class MonsterBody : MonoBehaviour
     {
         if (other.GetComponent<MonsterBody>())
             detected_monsters.Add(other.gameObject);
+
+        target = other.gameObject;
     }
 
     protected virtual void OnTriggerExit2D(Collider2D other)
     {
         if (other.GetComponent<MonsterBody>())
             detected_monsters.Remove(other.gameObject);
+
+        if (detected_monsters.Count > 0)
+        {
+            target = detected_monsters[0];
+        }
     }
 
     protected void Damage(float damage, Vector2 dir)
@@ -124,7 +159,9 @@ public class MonsterBody : MonoBehaviour
 
     protected void Turn(float dir)
     {
-        if (Vector2.Angle(transform.up, (target.transform.position - transform.position).normalized) < turn_threshold)
+        if (target && Vector2.Angle(transform.up, (target.transform.position - transform.position).normalized) < turn_threshold)
+            rb.AddTorque(dir * turn_speed);
+        else
             rb.AddTorque(dir * turn_speed);
     }
 
